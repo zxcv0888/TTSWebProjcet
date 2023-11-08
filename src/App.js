@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import logo from './logo_ploonet.png';
 import title from './bg_img_title.png';
+import loadingGIF from './loading.gif';
 import './App.css';
 
 function App() {
@@ -15,10 +16,12 @@ function App() {
 
   const [tts, setTTS] = useState(false);
   const [audioValue, setAudioValue] = useState(null);
+  const [loading, setLoading] = useState(false);
   
   const createTTS = () => {
     setAudioValue(null);
     setTTS(false);
+    setLoading(true);
 
     const query = `text=${text}&master_key=${master_key}&call_id=${call_id}&sid=${sid}&tempo=${tempo}&sample_rate=${sample_rate}`;
 
@@ -31,9 +34,14 @@ function App() {
         const base64data = reader.result;
 
         setAudioValue(base64data.replace('data:audio/wav;base64,',''));
+        setLoading(false);
       };
       setTTS(true);
     });
+  };
+
+  const resetPage = () => {
+    window.location.reload();
   };
 
   return (
@@ -108,11 +116,20 @@ function App() {
         <div className='body-btn-box'>
           <button className='body-btn' onClick={createTTS}>generate audio</button>
         </div>
-          {tts && audioValue && (
+        {loading ? (
+          <div>
+            <img src={loadingGIF} alt='Loading'/>
+          </div>
+        ) : (
+          tts && audioValue && (
             <audio controls className='audio'>
               <source src={`data:audio/wav;base64,${audioValue}`} type='audio/wav' />
             </audio>
-          )}
+          )
+        )}
+        <div>
+          <button onClick={resetPage}>reset page</button>
+        </div>
       </body>
     </div>
   );
