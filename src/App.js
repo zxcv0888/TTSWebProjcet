@@ -84,7 +84,7 @@ function App() {
           <option value={32}>이안</option>
           <option value={33}>조이</option>
       </select>
-      <input 
+      <input
         type="number" 
         step="0.01" 
         value={tempo} 
