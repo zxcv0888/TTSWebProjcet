@@ -93,6 +93,7 @@ function App() {
           const roundedValue = Math.round(inputValue * 100) / 100;
           setTempo(roundedValue);
         }}
+        className='body-select-three'
       />
         </div>
         <div className='body-input-box'>
@@ -106,12 +107,12 @@ function App() {
         </div>
         <div className='body-btn-box'>
           <button className='body-btn' onClick={createTTS}>generate audio</button>
+        </div>
           {tts && audioValue && (
-            <audio controls>
+            <audio controls className='audio'>
               <source src={`data:audio/wav;base64,${audioValue}`} type='audio/wav' />
             </audio>
           )}
-        </div>
       </body>
     </div>
   );
