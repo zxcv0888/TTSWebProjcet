@@ -40,10 +40,6 @@ function App() {
     });
   };
 
-  const resetPage = () => {
-    window.location.reload();
-  };
-
   return (
     <div className="App">
       <header className="App-header">
@@ -98,8 +94,10 @@ function App() {
         value={tempo} 
         onChange={(e) => {
           const inputValue = parseFloat(e.target.value);
+          if (inputValue >= 0 && inputValue <= 100) {
           const roundedValue = Math.round(inputValue * 100) / 100;
           setTempo(roundedValue);
+         }
         }}
         className='body-select-three'
       />
@@ -127,9 +125,6 @@ function App() {
             </audio>
           )
         )}
-        <div>
-          <button onClick={resetPage}>reset page</button>
-        </div>
       </body>
     </div>
   );
