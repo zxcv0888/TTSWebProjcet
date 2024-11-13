@@ -14,7 +14,10 @@
 }
 
 .App-logo {
-  margin-top: 2rem;
+  height: 100px;
+  width: auto;
+  margin-top: 1rem;
+  margin-bottom: -1%;
 }
 
 .App-link {

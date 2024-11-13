@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
-import logo from './logo_ploonet.png';
+// import logo from './logo_ploonet.png';
+import logo from './incheon_airport.png';
 import title from './bg_img_title.png';
 import loadingGIF from './loading.gif';
 import './App.css';
@@ -25,7 +26,7 @@ function App() {
 
     const query = `text=${text}&master_key=${master_key}&call_id=${call_id}&sid=${sid}&tempo=${tempo}&sample_rate=${sample_rate}`;
 
-    fetch('http://192.168.220.224:26000/ttsstream?' + query, {method: 'GET', mode: 'cors'})
+    fetch('https://stg-ai.ploonet.com:49003/develop/tts/secretary/ttsstream?' + query, {method: 'GET', mode: 'cors'})
     .then((response) => response.blob())
     .then((data) => {
       const reader = new FileReader();
@@ -71,7 +72,7 @@ function App() {
           <option value={15}>김경일</option>
           <option value={16}>김상균</option>
           <option value={17}>김완선</option>
-          <option value={18}>이경일</option>
+          <option value={18}>남성A</option>
           <option value={19}>카이스트</option>
           <option value={20}>지향</option>
           <option value={21}>세하</option>
